@@ -4,7 +4,7 @@
 # Add `~/bin` to the `$PATH`
 export PATH="$HOME/bin:$PATH"
 
-Append to the Bash history file, rather than overwriting it
+# Append to the Bash history file, rather than overwriting it
 shopt -s histappend
 
 # Prefer US English and use UTF-8
