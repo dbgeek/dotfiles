@@ -26,8 +26,18 @@ export TERM='screen-256color'
 eval $(gpg-agent --daemon)
 GPG_TTY=$(tty)
 export GPG_TTY
+
 if [ -f "${HOME}/.gpg-agent-info" ]; then
     . "${HOME}/.gpg-agent-info"
     export GPG_AGENT_INFO
     export SSH_AUTH_SOCK
+fi
+
+# source dotfiles in .dotfiles
+if [[ -f "~/.dotfiles" ]]; then
+  while read dotfile; do
+    if [[ -f "~/${dotfile}" ]]; then
+      source "~/${dotfile}"
+    fi
+  done <~/.dotfiles
 fi
