@@ -2,7 +2,7 @@
 cd "$(dirname "${BASH_SOURCE}")"
 
 
-for dotfile in $(ls -1A | grep -v .git); do
+for dotfile in $(ls -1A | egrep -v ".git|boostrap.sh"); do
   if [[ -f ~/"$dotfile" ]]; then
     if [[ -L ~/"$dotfile" ]]; then
       echo item: "$dotfile"
