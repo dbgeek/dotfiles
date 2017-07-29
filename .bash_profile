@@ -41,3 +41,6 @@ if [[ -f "~/.dotfiles" ]]; then
     fi
   done <~/.dotfiles
 fi
+
+# Add Tab-completion for SSH host aliases
+complete -o default -o nospace -W "$(grep -i "^host " $HOME/.ssh/config |grep -v "^Host \*" | awk '{print $2}')" scp sftp ssh
