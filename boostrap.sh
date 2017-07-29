@@ -1,6 +1,7 @@
 #!/usr/bin/env BASH
 cd "$(dirname "${BASH_SOURCE}")"
 
+
 for dotfile in $(ls -1A | grep -v .git); do
   if [[ -f ~/"$dotfile" ]]; then
     if [[ -L ~/"$dotfile" ]]; then
