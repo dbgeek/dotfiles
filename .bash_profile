@@ -12,6 +12,8 @@ export LC_ALL="en_US.UTF-e8"
 export LC_CTYPE="en_US.UTF-8"
 export LANG="en_US.UTF-8"
 
+export GOPATH=${HOME}
+
 color_prompt=yes
 if ! [ -x /usr/bin/tput ] || ! tput setaf 1 >&/dev/null; then
    # We have no color support; not compliant with Ecma-48
@@ -34,10 +36,11 @@ if [ -f "${HOME}/.gpg-agent-info" ]; then
 fi
 
 # source dotfiles in .dotfiles
-if [[ -f "~/.dotfiles" ]]; then
+if [[ -f ~/.dotfiles ]]; then
+  echo "file exists"
   while read dotfile; do
-    if [[ -f "~/${dotfile}" ]]; then
-      source "~/${dotfile}"
+    if [[ -f ~/"${dotfile}" ]]; then
+      source ~/"${dotfile}"
     fi
   done <~/.dotfiles
 fi
