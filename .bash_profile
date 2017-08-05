@@ -8,7 +8,7 @@ export PATH="$HOME/bin:$PATH"
 shopt -s histappend
 
 # Prefer US English and use UTF-8
-export LC_ALL="en_US.UTF-e8"
+export LC_ALL="en_US.UTF-8"
 export LC_CTYPE="en_US.UTF-8"
 export LANG="en_US.UTF-8"
 
@@ -24,12 +24,13 @@ fi
 
 export TERM='screen-256color'
 
-# on OS X with GPGTools, comment out the next line:
-eval $(gpg-agent --daemon)
-GPG_TTY=$(tty)
-export GPG_TTY
 
-if [ -f "${HOME}/.gpg-agent-info" ]; then
+
+if [[ -f "${HOME}/.gpg-agent-info" ]]; then
+    # on OS X with GPGTools, comment out the next line:
+    eval $(gpg-agent --daemon)
+    GPG_TTY=$(tty)
+    export GPG_TTY
     . "${HOME}/.gpg-agent-info"
     export GPG_AGENT_INFO
     export SSH_AUTH_SOCK
@@ -46,7 +47,9 @@ if [[ -f ~/.dotfiles ]]; then
 fi
 
 # Add Tab-completion for SSH host aliases
-complete -o default -o nospace -W "$(grep -i "^host " $HOME/.ssh/config |grep -v "^Host \*" | awk '{print $2}')" scp sftp ssh
+if [[ -f ~/.ssh/config ]]; then
+  complete -o default -o nospace -W "$(grep -i "^host " $HOME/.ssh/config |grep -v "^Host \*" | awk '{print $2}')" scp sftp ssh
+fi
 
 # Define alias
 alias tc="tmux new -s $1"
