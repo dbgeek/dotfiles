@@ -24,8 +24,6 @@ fi
 
 export TERM='screen-256color'
 
-
-
 if [[ -f "${HOME}/.gpg-agent-info" ]]; then
     # on OS X with GPGTools, comment out the next line:
     eval $(gpg-agent --daemon)
