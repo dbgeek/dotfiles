@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
+
+IGNORE=(".git" ".gitignore" "bootstrap")
+
 cd "$(dirname "${BASH_SOURCE}")"
 
-
-for dotfile in $(ls -1A | egrep -v ".git|bootstrap.sh"); do
-  if [[ -f ~/"$dotfile" ]]; then
+for dotfile in $(ls -1A); do
+  if [[ -f ~/"$dotfile" ]] && [[ ! " ${IGNORE[@]} " =~ "$dotfile" ]]; then
     if [[ ! -L ~/"$dotfile" ]]; then
       mv ~/${dotfile} ~/${dotfile}_$(date +%Y%m%d%H%M%S)
       ln -s $(pwd)/${dotfile} ~/${dotfile}
