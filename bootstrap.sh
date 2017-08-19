@@ -1,18 +1,33 @@
 #!/usr/bin/env bash
+shopt -s nullglob dotglob
+IGNORE=(".git" ".gitignore" "bootstrap.sh")
 
-IGNORE=(".git" ".gitignore" "bootstrap")
+cd "$(dirname "${BASH_SOURCE[@]}")" || exit
 
-cd "$(dirname "${BASH_SOURCE}")"
-
-for dotfile in $(ls -1A); do
-  if [[ -f ~/"$dotfile" ]] && [[ ! " ${IGNORE[@]} " =~ "$dotfile" ]]; then
-    if [[ ! -L ~/"$dotfile" ]]; then
-      mv ~/${dotfile} ~/${dotfile}_$(date +%Y%m%d%H%M%S)
-      ln -s $(pwd)/${dotfile} ~/${dotfile}
+array_contains () {
+  local seeking=$1; shift
+  local in=1
+  for element; do
+    if [[ $element == "$seeking" ]]; then
+      in=0
+      break
     fi
-  else
-    echo "file not exists: ${dotfile}"
-    ln -s $(pwd)/${dotfile} ~/${dotfile}
-  fi
-done
+  done
+  return $in
+}
 
+main () {
+  for dotfile in *; do
+    if [[ -f ~/"$dotfile" ]] && ! array_contains "$dotfile" "${IGNORE[@]}"; then
+      if [[ ! -L ~/"$dotfile" ]]; then
+        mv ~"/${dotfile}" ~"/${dotfile}_$(date +%Y%m%d%H%M%S)"
+        ln -s "$(pwd)/${dotfile}" ~"/${dotfile}"
+      fi
+    elif ! array_contains "$dotfile" "${IGNORE[@]}"; then
+      echo "file not exists: ${dotfile}"
+      ln -s "$(pwd)/${dotfile}" ~"/${dotfile}"
+    fi
+  done
+}
+
+main
