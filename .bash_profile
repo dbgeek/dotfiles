@@ -52,3 +52,9 @@ fi
 # Define alias
 alias tc="tmux new -s $1"
 alias ta="tmux attach -d -t $1"
+
+
+if [[ -d "/usr/local/opt/coreutils" ]]; then
+  PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+  MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+fi
