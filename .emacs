@@ -2,6 +2,11 @@
 (setq tab-width 2)
 (setq-default tab-width 2)
 
+(package-initialize)
+(require 'auto-complete-config)
+(ac-config-default)
+(require 'go-autocomplete)
+
 ;; ymal mode
 (add-hook 'yaml-mode-hook
 					(lambda ()
