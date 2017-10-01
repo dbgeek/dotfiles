@@ -27,7 +27,7 @@ main () {
       fi
     elif ! array_contains "$dotfile" "${IGNORE[@]}"; then
       echo "file not exists: ${dotfile}"
-      ln -s "$(pwd)/${dotfile}" ~"/${dotfile}"
+      ln -s "$(pwd)/${dotfile}" "$HOME/${dotfile}"
     fi
   done
 
