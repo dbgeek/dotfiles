@@ -27,7 +27,7 @@ main () {
       fi
     elif ! array_contains "$dotfile" "${IGNORE[@]}"; then
       echo "file not exists: ${dotfile}"
-      ln -s "$(pwd)/${dotfile}" ~"/${dotfile}"
+      ln -s "$(pwd)/${dotfile}" "$HOME/${dotfile}"
     fi
   done
 
@@ -41,7 +41,7 @@ main () {
       if [[ -f ~/".gnupg/$FILENAME" ]]; then
         if [[ ! -L ~/".gnupg/$FILENAME" ]]; then
           mv "$HOME/.gnupg/${FILENAME}" "$HOME/.gnupg/${FILENAME}_$(date +%Y%m%d%H%M%S)"
-          ln -s "$(pwd)/${file}" "$HOME//.gnupg/${FILENAME}"
+          ln -s "$(pwd)/${file}" "$HOME/.gnupg/${FILENAME}"
         fi
       else
           ln -s "$(pwd)/${file}" "$HOME/.gnupg/${FILENAME}"
