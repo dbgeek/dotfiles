@@ -19,10 +19,10 @@ array_contains () {
 
 main () {
   for dotfile in *; do
-    if [[ -f ~/"$dotfile" ]] && ! array_contains "$dotfile" "${IGNORE[@]}"; then
-      if [[ ! -L ~/"$dotfile" ]]; then
+    if [[ -f "$HOME/$dotfile" ]] && ! array_contains "$dotfile" "${IGNORE[@]}"; then
+      if [[ ! -L "$HOME/$dotfile" ]]; then
         mv ~"/${dotfile}" ~"/${dotfile}_$(date +%Y%m%d%H%M%S)"
-        ln -s "$(pwd)/${dotfile}" ~"/${dotfile}"
+        ln -s "$(pwd)/${dotfile}" "$HOME/${dotfile}"
         echo "backup files"
       fi
     elif ! array_contains "$dotfile" "${IGNORE[@]}"; then
