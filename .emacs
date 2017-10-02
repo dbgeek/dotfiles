@@ -2,7 +2,16 @@
 (setq tab-width 2)
 (setq-default tab-width 2)
 
-(package-initialize)
+(require 'package) ;; You might already have this line
+(let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
+										(not (gnutls-available-p))))
+			 (url (concat (if no-ssl "http" "https") "://melpa.org/packages/")))
+	(add-to-list 'package-archives (cons "melpa" url) t))
+(when (< emacs-major-version 24)
+	;; For important compatibility libraries like cl-lib
+	(add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
+(package-initialize) ;; You might already have this line
+
 (require 'auto-complete-config)
 (ac-config-default)
 (require 'go-autocomplete)
@@ -89,15 +98,6 @@
 
 ;; We want to automatically format .tf files on save.
 (add-hook 'terraform-mode-hook #'terraform-format-on-save-mode)
-
-;; ELPA packages; install interactively with M-x package-list-packages.
-(require 'package)
-(add-to-list 'package-archives
-						 '("melpa" . "http://melpa.org/packages/") t)
-(when (< emacs-major-version 24)
-	;; For important compatibility libraries like cl-lib
-	(add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
-(package-initialize)
 
 ;; Add homebrew's bin directory to exec-path.
 (setq exec-path (append exec-path '("/usr/local/homebrew/bin")))
