@@ -19,10 +19,10 @@ array_contains () {
 
 main () {
   for dotfile in *; do
-    if [[ -f ~/"$dotfile" ]] && ! array_contains "$dotfile" "${IGNORE[@]}"; then
-      if [[ ! -L ~/"$dotfile" ]]; then
-        mv ~"/${dotfile}" ~"/${dotfile}_$(date +%Y%m%d%H%M%S)"
-        ln -s "$(pwd)/${dotfile}" ~"/${dotfile}"
+    if [[ -f "$HOME/$dotfile" ]] && ! array_contains "$dotfile" "${IGNORE[@]}"; then
+      if [[ ! -L "$HOME/$dotfile" ]]; then
+        mv "$HOME/${dotfile}" "$HOME/${dotfile}_$(date +%Y%m%d%H%M%S)"
+        ln -s "$(pwd)/${dotfile}" "$HOME/${dotfile}"
         echo "backup files"
       fi
     elif ! array_contains "$dotfile" "${IGNORE[@]}"; then
@@ -33,15 +33,15 @@ main () {
 
 
   if [[ "$PLATFORM"  == "Darwin" ]]; then
-    if [[ ! -d ~/".gnupg" ]]; then
-      mkdir ~/".gnupg"
+    if [[ ! -d "$HOME/.gnupg" ]]; then
+      mkdir "$HOME/.gnupg"
     fi
     for file in gnupg/osx/*; do
       FILENAME=$(basename "$file")
-      if [[ -f ~/".gnupg/$FILENAME" ]]; then
-        if [[ ! -L ~/".gnupg/$FILENAME" ]]; then
+      if [[ -f "$HOME/.gnupg/$FILENAME" ]]; then
+        if [[ ! -L "$HOME/.gnupg/$FILENAME" ]]; then
           mv "$HOME/.gnupg/${FILENAME}" "$HOME/.gnupg/${FILENAME}_$(date +%Y%m%d%H%M%S)"
-          ln -s "$(pwd)/${file}" "$HOME//.gnupg/${FILENAME}"
+          ln -s "$(pwd)/${file}" "$HOME/.gnupg/${FILENAME}"
         fi
       else
           ln -s "$(pwd)/${file}" "$HOME/.gnupg/${FILENAME}"
