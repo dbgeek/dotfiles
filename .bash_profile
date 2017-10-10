@@ -49,12 +49,16 @@ if [[ -f ~/.ssh/config ]]; then
   complete -o default -o nospace -W "$(grep -i "^host " $HOME/.ssh/*config |grep -v "^Host \*" | awk '{print $2}')" scp sftp ssh
 fi
 
+# Autocomplete for awscli
+complete -C 'docker run -e COMP_LINE -e COMP_POINT -e COMMAND_LINE --rm --entrypoint /usr/bin/aws_completer txapps/awscli' awscli
+
+
 # Define alias
 alias tc="tmux new -s $1"
 alias ta="tmux attach -d -t $1"
-
 
 if [[ -d "/usr/local/opt/coreutils" ]]; then
   PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
   MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 fi
+
