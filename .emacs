@@ -2,6 +2,15 @@
 (setq tab-width 2)
 (setq-default tab-width 2)
 
+
+;; Format xml
+(defun xml-format ()
+	(interactive)
+	(save-excursion
+		(shell-command-on-region (mark) (point) "xmllint --format -" (buffer-name) t)
+		)
+	)
+
 (require 'package) ;; You might already have this line
 (let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
 										(not (gnutls-available-p))))
@@ -116,3 +125,4 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
