@@ -1,7 +1,7 @@
 ;; Display tabs as two spaces wide.
 (setq tab-width 2)
 (setq-default tab-width 2)
-
+(setq-default indent-tabs-mode nil)
 
 ;; Format xml
 (defun xml-format ()
@@ -117,8 +117,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-	 (quote
-		(json-mode yaml-mode solidity-mode terraform-mode protobuf-mode smart-tabs-mode))))
+   (quote
+    (json-mode yaml-mode solidity-mode terraform-mode protobuf-mode smart-tabs-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
