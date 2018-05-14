@@ -66,6 +66,16 @@
 						(setq sh-basic-offset 2)
 						(setq sh-indentation 2)))
 
+;; Markdown mode
+(autoload 'markdown-mode "markdown-mode"
+   "Major mode for editing Markdown files" t)
+(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+
+(autoload 'gfm-mode "markdown-mode"
+   "Major mode for editing GitHub Flavored Markdown files" t)
+(add-to-list 'auto-mode-alist '("README\\.md\\'" . gfm-mode))
+
 (set-default-font "-adobe-courier-medium-r-normal--14-140-75-75-m-90-iso8859-1")
 
 ;; Sets the path for backup files generated automatically by emacs (represented
@@ -118,7 +128,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (json-mode yaml-mode solidity-mode terraform-mode protobuf-mode smart-tabs-mode))))
+    (markdown-mode json-mode yaml-mode solidity-mode terraform-mode protobuf-mode smart-tabs-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
