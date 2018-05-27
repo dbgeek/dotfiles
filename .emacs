@@ -11,6 +11,9 @@
 		)
 	)
 
+(setq shell-file-name "bash")
+(setq shell-command-switch "-ic")
+
 (require 'package) ;; You might already have this line
 (let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
 										(not (gnutls-available-p))))
@@ -105,7 +108,7 @@
 
 ;; We want go-mode, and goimports + gofmt hook.
 (add-to-list 'load-path "~/.emacs.d/go-mode")
-(require 'go-mode-autoloads)
+;;(require 'go-mode-autoloads)
 (setq gofmt-command "goimports")
 (add-hook 'before-save-hook #'gofmt-before-save)
 

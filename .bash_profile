@@ -30,6 +30,7 @@ if [[ -f "${HOME}/.gpg-agent-info" ]]; then
     GPG_TTY=$(tty)
     export GPG_TTY
     . "${HOME}/.gpg-agent-info"
+    export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
     export GPG_AGENT_INFO
     export SSH_AUTH_SOCK
 fi
@@ -56,7 +57,7 @@ complete -C 'docker run -e COMP_LINE -e COMP_POINT -e COMMAND_LINE --rm --entryp
 # Define alias
 alias tc="tmux new -s $1"
 alias ta="tmux attach -d -t $1"
-
+alias terraform="tf"
 if [[ -d "/usr/local/opt/coreutils" ]]; then
   PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
   MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
