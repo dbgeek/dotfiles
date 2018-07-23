@@ -1,5 +1,4 @@
 # inspired by and borrowed from: https://github.com/keeganlow/dotfiles
-# source ~/.bashrc
 
 # Add `~/bin` to the `$PATH`
 export PATH="$HOME/bin:$PATH"
