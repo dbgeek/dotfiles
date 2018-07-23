@@ -131,7 +131,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (markdown-mode json-mode yaml-mode solidity-mode terraform-mode protobuf-mode smart-tabs-mode))))
+    (json-reformat markdown-mode json-mode yaml-mode solidity-mode terraform-mode protobuf-mode smart-tabs-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
