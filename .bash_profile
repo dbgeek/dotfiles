@@ -2,6 +2,7 @@
 
 # Add `~/bin` to the `$PATH`
 export PATH="$HOME/bin:$PATH"
+export PATH="/usr/local/opt/curl/bin:$PATH"
 
 # Append to the Bash history file, rather than overwriting it
 shopt -s histappend
@@ -12,6 +13,11 @@ export LC_CTYPE="en_US.UTF-8"
 export LANG="en_US.UTF-8"
 
 export GOPATH=${HOME}
+export GO111MODULE=on
+
+export ORACLE_HOME=/Users/bjorn.ahl/Tools/instantclient_12_2
+export PKG_CONFIG_PATH=/Users/bjorn.ahl/Tools/pkgconfig
+export LD_LIBRARY_PATH=$ORACLE_HOME
 
 color_prompt=yes
 if ! [ -x /usr/bin/tput ] || ! tput setaf 1 >&/dev/null; then
@@ -62,3 +68,4 @@ if [[ -d "/usr/local/opt/coreutils" ]]; then
   MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 fi
 
+alias pass-private=' export PASSWORD_STORE_DIR=/Users/bjorn.ahl/src/github.com/dbgeek/pass'
