@@ -19,6 +19,7 @@ brew 'hopenpgp-tools'
 brew 'pinentry-mac'
 brew 'flyway'
 brew 'pigz'
+brew 'pre-commit'
 
 cask 'docker'
 cask 'iterm2'
