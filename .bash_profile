@@ -3,6 +3,7 @@
 # Add `~/bin` to the `$PATH`
 export PATH="$HOME/bin:$PATH"
 export PATH="/usr/local/opt/curl/bin:$PATH"
+export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 
 # Append to the Bash history file, rather than overwriting it
 shopt -s histappend
@@ -15,7 +16,7 @@ export LANG="en_US.UTF-8"
 export GOPATH=${HOME}
 export GO111MODULE=on
 
-export ORACLE_HOME=/Users/bjorn.ahl/Tools/instantclient_12_2
+export ORACLE_HOME=/Users/bjorn.ahl/Tools/instantclient_18_1
 export PKG_CONFIG_PATH=/Users/bjorn.ahl/Tools/pkgconfig
 export LD_LIBRARY_PATH=$ORACLE_HOME
 
@@ -58,6 +59,8 @@ fi
 # Autocomplete for awscli
 complete -C 'docker run -e COMP_LINE -e COMP_POINT -e COMMAND_LINE --rm --entrypoint /usr/bin/aws_completer txapps/awscli' awscli
 
+# Adding autocomplete for bash
+source <(gopass completion bash)
 
 # Define alias
 alias tc="tmux new -s $1"
@@ -66,6 +69,10 @@ alias terraform="tf"
 if [[ -d "/usr/local/opt/coreutils" ]]; then
   PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
   MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+fi
+
+if [[ -d "/usr/local/Cellar/libpq/11.1/bin" ]]; then
+  PATH=$PATH:/usr/local/Cellar/libpq/11.1/bin
 fi
 
 alias pass-private=' export PASSWORD_STORE_DIR=/Users/bjorn.ahl/src/github.com/dbgeek/pass'
